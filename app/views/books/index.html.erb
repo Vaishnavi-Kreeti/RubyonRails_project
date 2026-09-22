@@ -1,0 +1,11 @@
+<h1>Books todo app</h1>
+<p>welcome</p>
+<% @books.each do |b|%>
+<div>
+    <h3><%=b.title%></h3>
+    <p><%=b.author%></p>
+    <p><%=b.pages%></p>
+    <p><%=b.status%></p>
+</div>
+<%end%>
+<button type="button" onclick="window.location.href='/books/new';">Add Book</button>
