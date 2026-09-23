@@ -1,11 +1,14 @@
 <h1>Books todo app</h1>
 <p>welcome</p>
+<button type="button" onclick="window.location.href='/books/new';">Add Book</button>
 <% @books.each do |b|%>
 <div>
     <h3><%=b.title%></h3>
     <p><%=b.author%></p>
     <p><%=b.pages%></p>
     <p><%=b.status%></p>
+    <p><%=b.genre%></p>
+    <button type="button" onclick="window.location.href='/books/<%=b.id%>/edit';">Edit Book</button> 
+    <%= button_to "Delete", "/books/#{b.id}",method: :delete,data:{turbo_confirm:"Are you sure?"}%>
 </div>
 <%end%>
-<button type="button" onclick="window.location.href='/books/new';">Add Book</button>

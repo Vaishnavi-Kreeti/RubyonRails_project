@@ -13,7 +13,28 @@ class BooksController < ApplicationController
       render :new
     end
   end
+  def edit
+    @book=Book.find(params[:id])
+  end
+  def update
+    @book=Book.find(params[:id])
+    if @book.update(edit_param)
+      redirect_to "/books"
+    else
+      render :edit
+    end
+  end
+  def destroy
+    @book=Book.find(params[:id])
+    @book.destroy
+    redirect_to "/books"
+  end
+  private
+
   def param
-    params.require(:book).permit(:title,:author,:status,:pages)
+    params.require(:book).permit(:title, :author, :status, :pages, :genre)
+  end
+  def edit_param
+    params.require(:book).permit(:title, :author, :status, :pages, :genre, :id)
   end
 end

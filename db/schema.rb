@@ -10,13 +10,14 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2026_07_28_211036) do
+ActiveRecord::Schema[8.1].define(version: 2026_09_23_102523) do
   create_table "books", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
-    t.string "author"
+    t.string "author", null:false
     t.datetime "created_at", null: false
+    t.string "genre"
     t.integer "pages"
-    t.string "status"
-    t.string "title"
+    t.string "status",null:false
+    t.string "title", null:false
     t.datetime "updated_at", null: false
   end
 end

@@ -1,5 +1,5 @@
 <h1>Books todo app</h1>
-<h2>Add Books</h2>
+<h2>Update Books</h2>
 <%= form_with model: @book do |form| %>
     <div>
         <%= form.label:title%>
@@ -22,6 +22,6 @@
         <%=form.text_field:genre%>
     </div>
     <div>
-        <%=form.submit "Add Book"%>
+        <%=form.submit "Update Book"%>
     </div>
 <%end%>
