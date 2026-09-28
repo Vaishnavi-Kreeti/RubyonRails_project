@@ -1,25 +1,39 @@
 <h1>Books todo app</h1>
 <h2>Add Books</h2>
-<%= form_with model: @book do |form| %>
+<% if @book.errors.any? %>
+  <div>
+    <h2>
+      <%= pluralize(@book.errors.count, "error") %>
+      prevented this book from being saved
+    </h2>
+
+    <ul>
+      <% @book.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+    </ul>
+  </div>
+<% end %>
+<%= form_with model: @book, data: { turbo: false } do |form| %>
     <div>
-        <%= form.label:title%>
-        <%=form.text_field:title%>
+        <%= form.label :title%>
+        <%=form.text_field :title%>
     </div>
     <div>
-        <%= form.label:author%>
-        <%=form.text_field:author%>
+        <%= form.label :author%>
+        <%=form.text_field :author%>
     </div>
     <div>
-        <%= form.label:pages%>
-        <%=form.text_field:pages%>
+        <%= form.label :pages%>
+        <%=form.text_field :pages%>
     </div>
     <div>
-        <%= form.label:status%>
-        <%=form.text_field:status%>
+        <%= form.label :status%>
+        <%=form.text_field :status%>
     </div>
     <div>
-        <%= form.label:genre%>
-        <%=form.text_field:genre%>
+        <%= form.label :genre%>
+        <%=form.text_field :genre%>
     </div>
     <div>
         <%=form.submit "Add Book"%>
