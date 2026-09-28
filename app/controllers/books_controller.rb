@@ -6,7 +6,7 @@ class BooksController < ApplicationController
     @book=Book.new
   end
   def create
-    @book=Book.create(param)
+    @book=Book.new(param)
     if @book.save
       redirect_to "/books"
     else
