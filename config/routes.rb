@@ -1,5 +1,12 @@
 Rails.application.routes.draw do
+  # login
+  get "/login", to: "sessions#new"
+  post "/login", to: "sessions#create"
+  # signup
+  get "/users/new", to: "users#new"
+  post "/users", to: "users#create", as: :users
   get "pages/home"
+  # crud
   get "/books", to: "books#index"
   get "/books/new", to: "books#new"
   post "/books", to: "books#create"

@@ -10,14 +10,22 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2026_09_23_102523) do
+ActiveRecord::Schema[8.1].define(version: 2026_09_29_094827) do
   create_table "books", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
-    t.string "author", null:false
+    t.string "author"
     t.datetime "created_at", null: false
     t.string "genre"
     t.integer "pages"
-    t.string "status",null:false
-    t.string "title", null:false
+    t.string "status"
+    t.string "title"
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "users", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.string "email"
+    t.string "name"
+    t.string "password_digest"
     t.datetime "updated_at", null: false
   end
 end
