@@ -1,12 +1,13 @@
 class BooksController < ApplicationController
+  before_action :require_login
   def index
-    @books=Book.all
+    @books=current_user.books
   end
   def new
-    @book=Book.new
+    @book=current_user.books.new
   end
   def create
-    @book=Book.new(param)
+    @book=current_user.books.new(param)
     if @book.save
       redirect_to "/books"
     else
@@ -14,10 +15,10 @@ class BooksController < ApplicationController
     end
   end
   def edit
-    @book=Book.find(params[:id])
+    @book=current_user.books.find(params[:id])
   end
   def update
-    @book=Book.find(params[:id])
+    @book=current_user.books.find(params[:id])
     if @book.update(edit_param)
       redirect_to "/books"
     else
@@ -25,7 +26,7 @@ class BooksController < ApplicationController
     end
   end
   def destroy
-    @book=Book.find(params[:id])
+    @book=current_user.books.find(params[:id])
     @book.destroy
     redirect_to "/books"
   end

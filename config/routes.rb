@@ -2,6 +2,7 @@ Rails.application.routes.draw do
   # login
   get "/login", to: "sessions#new"
   post "/login", to: "sessions#create"
+  delete "/logout", to: "sessions#destroy"
   # signup
   get "/users/new", to: "users#new"
   post "/users", to: "users#create", as: :users

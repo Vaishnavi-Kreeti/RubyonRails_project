@@ -24,6 +24,12 @@
   </head>
 
   <body>
+    <%if current_user%>
+    <p>
+    Welcome, <%= current_user.name %>! 👋
+    </p>
+    <%=button_to "Logout", "/logout",method: :delete,data:{turbo_confirm:"Are you sure?"}%>
+    <%end%>
     <%= yield %>
   </body>
 </html>
