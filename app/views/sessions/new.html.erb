@@ -1,5 +1,7 @@
 <h1>Login</h1>
-
+<%if flash[:alert]%>
+<p><%=flash[:alert]%></p>
+<%end%>
 <%= form_with url: "/login",method: :post, data: { turbo: false } do |form| %>
     <div>
         <%= form.label :email%>
@@ -13,4 +15,7 @@
         <%=form.submit "Login"%>
     </div>
 <%end%>
+<p>Don't have an account?
+    <%=link_to "Sign Up","/users/new"%>
+</p>
 
