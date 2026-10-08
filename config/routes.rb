@@ -1,8 +1,10 @@
 Rails.application.routes.draw do
-  # login
+  # login and logout
   get "/login", to: "sessions#new"
   post "/login", to: "sessions#create"
   delete "/logout", to: "sessions#destroy"
+  # search
+  get "/books?search=:search", to: "books#index"
   # signup
   get "/users/new", to: "users#new"
   post "/users", to: "users#create", as: :users
@@ -12,7 +14,8 @@ Rails.application.routes.draw do
   get "/books/new", to: "books#new"
   post "/books", to: "books#create"
   get "/books/:id/edit", to: "books#edit"
-  patch "/books/:id", to: "books#update", as: :book
+  get "/books/:id", to: "books#show", as: :book
+  patch "/books/:id", to: "books#update", as: :update_book
   delete "/books/:id", to: "books#destroy", as: :delete_book
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
