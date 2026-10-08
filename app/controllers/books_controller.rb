@@ -2,6 +2,9 @@ class BooksController < ApplicationController
   before_action :require_login
   def index
     @books=current_user.books
+    if params[:search].present?
+      @books=@books.where("title LIKE?", "%#{params[:search]}%")
+    end
   end
   def new
     @book=current_user.books.new
@@ -24,6 +27,9 @@ class BooksController < ApplicationController
     else
       render :edit
     end
+  end
+  def show
+    @book=current_user.books.find(params[:id])
   end
   def destroy
     @book=current_user.books.find(params[:id])

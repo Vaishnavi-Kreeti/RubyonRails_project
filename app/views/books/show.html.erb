@@ -1,0 +1,11 @@
+<h1>Books todo app</h1>
+
+    <h3><%=@book.title%></h3>
+    <p><%=@book.author%></p>
+    <p><%=@book.pages%></p>
+    <p><%=@book.status%></p>
+    <p><%=@book.genre%></p>
+    <button type="button" onclick="window.location.href='/books/<%=@book.id%>/edit';">Edit Book</button> 
+    <%= button_to "Delete", "/books/#{@book.id}",method: :delete,data:{turbo_confirm:"Are you sure?"}%>
+</div>
+

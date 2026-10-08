@@ -1,8 +1,16 @@
 <h1>Books todo app</h1>
+<%= form_with url: "/books?search",method: :get, data: { turbo: false } do |form| %>
+    <div>
+        <%=form.text_field :search,value: params[:search],placeholder:"Search books"%>
+    </div>
+    <div>
+        <%=form.submit "Search"%>
+    </div>
+<%end%>
 <button type="button" onclick="window.location.href='/books/new';">Add Book</button>
 <% @books.each do |b|%>
 <div>
-    <h3><%=b.title%></h3>
+    <h3><%=link_to b.title,"/books/#{b.id}"%></h3>
     <p><%=b.author%></p>
     <p><%=b.pages%></p>
     <p><%=b.status%></p>
