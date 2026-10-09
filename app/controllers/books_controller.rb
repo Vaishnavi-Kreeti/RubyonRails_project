@@ -2,8 +2,14 @@ class BooksController < ApplicationController
   before_action :require_login
   def index
     @books=current_user.books
+    @book_count = @books.count
+    @reading_count = @books.where(status: "Reading").count
+    @done_count = @books.where(status: "Done").count
     if params[:search].present?
-      @books=@books.where("title LIKE?", "%#{params[:search]}%")
+      @books=@books.where("title LIKE ?", "%#{params[:search]}%")
+    end
+    if params[:status].present?
+      @books=@books.where(status: params[:status])
     end
   end
   def new
@@ -12,7 +18,7 @@ class BooksController < ApplicationController
   def create
     @book=current_user.books.new(param)
     if @book.save
-      redirect_to "/books"
+      redirect_to "/books", notice: "Book added successfully"
     else
       render :new
     end
@@ -23,7 +29,7 @@ class BooksController < ApplicationController
   def update
     @book=current_user.books.find(params[:id])
     if @book.update(edit_param)
-      redirect_to "/books"
+      redirect_to "/books", notice: "Book updated successfully"
     else
       render :edit
     end
@@ -34,7 +40,7 @@ class BooksController < ApplicationController
   def destroy
     @book=current_user.books.find(params[:id])
     @book.destroy
-    redirect_to "/books"
+    redirect_to "/books", notice: "Book deleted successfully"
   end
   private
 
