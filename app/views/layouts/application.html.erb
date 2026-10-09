@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title><%= content_for(:title) || "Store" %></title>
+    <title><%= content_for(:title) || "Shelf — Your reading space" %></title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="application-name" content="Store">
@@ -19,17 +19,52 @@
     <%# <link rel="apple-touch-icon" href="/icon.png"> %>
 
     <%# Includes all stylesheet files in app/assets/stylesheets %>
-    <%= stylesheet_link_tag :app, "data-turbo-track": "reload" %>
+    <%= stylesheet_link_tag :app, "tailwind", "data-turbo-track": "reload" %>
     <%= javascript_importmap_tags %>
   </head>
 
-  <body>
-    <%if current_user%>
-    <p>
-    Welcome, <%= current_user.name %>! 👋
-    </p>
-    <%=button_to "Logout", "/logout",method: :delete,data:{turbo_confirm:"Are you sure?"}%>
-    <%end%>
-    <%= yield %>
+  <body class="min-h-screen bg-stone-50 font-sans text-slate-900 antialiased">
+    <header class="border-b border-stone-200 bg-white/90">
+      <div class="mx-auto flex max-w-7xl items-center justify-between px-5 py-4 sm:px-8">
+        <%= link_to(current_user ? "/books" : "/login", class: "flex items-center gap-3") do %>
+          <span class="flex h-10 w-10 items-center justify-center rounded-xl bg-emerald-900 text-white" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" class="h-5 w-5" stroke="currentColor" stroke-width="1.8">
+              <path d="M5 4.75A2.75 2.75 0 0 1 7.75 2H20v17H7.75A2.75 2.75 0 0 0 5 21.75v-17Z" />
+              <path d="M5 5v16.75M9 6h7M9 10h7" />
+            </svg>
+          </span>
+          <span>
+            <span class="block font-serif text-xl font-semibold tracking-tight text-slate-900">Shelf</span>
+            <span class="block text-[10px] font-semibold uppercase tracking-[0.2em] text-slate-500">Your reading space</span>
+          </span>
+        <% end %>
+        <% if current_user %>
+          <div class="flex items-center gap-3 sm:gap-5">
+            <span class="hidden text-sm text-slate-600 sm:inline">Welcome, <strong class="font-semibold text-slate-900"><%= current_user.name %></strong></span>
+            <%= button_to "Log out", "/logout", method: :delete, data: { turbo_confirm: "Are you sure you want to log out?" }, class: "rounded-lg border border-stone-300 px-4 py-2 text-sm font-semibold text-slate-700 transition hover:border-slate-500 hover:bg-stone-50" %>
+          </div>
+        <% else %>
+          <nav class="flex items-center gap-4 text-sm font-semibold">
+            <%= link_to "Log in", "/login", class: "text-slate-600 transition hover:text-emerald-800" %>
+            <%= link_to "Create account", "/users/new", class: "rounded-lg bg-emerald-900 px-4 py-2.5 text-white transition hover:bg-emerald-800" %>
+          </nav>
+        <% end %>
+      </div>
+    </header>
+
+    <% if flash[:notice].present? || flash[:alert].present? %>
+      <div class="mx-auto max-w-7xl px-5 pt-5 sm:px-8">
+        <% if flash[:notice].present? %>
+          <div class="rounded-xl border border-emerald-200 bg-emerald-50 px-4 py-3 text-sm text-emerald-900" role="status"><%= flash[:notice] %></div>
+        <% end %>
+        <% if flash[:alert].present? %>
+          <div class="rounded-xl border border-rose-200 bg-rose-50 px-4 py-3 text-sm text-rose-800" role="alert"><%= flash[:alert] %></div>
+        <% end %>
+      </div>
+    <% end %>
+
+    <main class="mx-auto max-w-7xl px-5 py-8 sm:px-8 sm:py-12">
+      <%= yield %>
+    </main>
   </body>
 </html>
