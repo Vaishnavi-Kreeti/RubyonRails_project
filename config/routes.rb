@@ -5,8 +5,10 @@ Rails.application.routes.draw do
   delete "/logout", to: "sessions#destroy"
   # user
   get "/profile", to: "users#profile", as: :profile
-  get "/profile/edit", to: "users#edit", as: :edit_profile
+  get "/profile/edit", to: "users#edit", as: :edit
   patch "/profile", to: "users#update", as: :update_profile
+  get "/profile/change_password", to: "users#change_password", as: :change_password
+  patch "/profile/change_password", to: "users#update_password", as: :update_password
   # search
   get "/books?search=:search", to: "books#index"
   # signup
