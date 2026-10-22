@@ -1,0 +1,20 @@
+<section class="mx-auto max-w-3xl">
+    <%= link_to "← Back to your books", "/books", class: "text-sm font-semibold text-slate-500 transition hover:text-emerald-800" %>
+    <article class="mt-6 overflow-hidden rounded-3xl border border-stone-200 bg-white shadow-sm">
+        <div class="bg-emerald-950 px-6 py-10 text-white sm:px-10 sm:py-14">
+            <p class="mt-5 max-w-2xl font-serif text-4xl font-semibold tracking-tight sm:text-5xl">My Profile</p>
+           
+        </div>
+        <div class="p-6 sm:p-10">
+            <h2 class="font-serif text-xl font-semibold text-slate-900">Profile</h2>
+            <dl class="mt-5 grid gap-5 border-y border-stone-100 py-6 sm:grid-cols-3">
+                <div><dt class="text-xs font-bold uppercase tracking-wider text-slate-500">Name</dt><dd class="mt-2 text-sm font-medium text-slate-900"><%= @user.name  %></dd></div>
+                <div><dt class="text-xs font-bold uppercase tracking-wider text-slate-500">Email</dt><dd class="mt-2 text-sm font-medium text-slate-900"><%= @user.email %></dd></div>
+            </dl>
+            <div class="mt-6 flex flex-col gap-3 sm:flex-row">
+                <%= link_to "Edit Profile", "/profile/edit", class: "inline-flex items-center justify-center rounded-xl bg-emerald-900 px-5 py-3 text-sm font-semibold text-white transition hover:bg-emerald-800" %>
+            </div>
+        </div>
+    </article>
+</section>
+
