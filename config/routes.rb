@@ -3,6 +3,10 @@ Rails.application.routes.draw do
   get "/login", to: "sessions#new"
   post "/login", to: "sessions#create"
   delete "/logout", to: "sessions#destroy"
+  # user
+  get "/profile", to: "users#profile", as: :profile
+  get "/profile/edit", to: "users#edit", as: :edit_profile
+  patch "/profile", to: "users#update", as: :update_profile
   # search
   get "/books?search=:search", to: "books#index"
   # signup
