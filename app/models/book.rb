@@ -1,5 +1,6 @@
 class Book < ApplicationRecord
   belongs_to :user
+  has_many :reviews, dependent: :destroy
   validates :title, presence: { message: " is mandatory" }, length: { maximum: 100 }
   validates :status, presence: { message: " is mandatory" }, inclusion: { in: [ "To Be Read", "Reading", "Done" ], message: "must be To Read, Reading, or Done" }
   validates :author, length: { maximum: 100 }
