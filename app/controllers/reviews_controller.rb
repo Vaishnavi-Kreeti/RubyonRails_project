@@ -1,4 +1,5 @@
 class ReviewsController < ApplicationController
+  # before_action :require_login, only: [ :create, :destroy ]
   def index
     @reviews = Review.includes(:book, :user).order(created_at: :desc)
   end

@@ -13,8 +13,7 @@
 
       <% unless current_user %>
         <div class="flex shrink-0 flex-col gap-3 sm:flex-row">
-          <%= link_to "Get started", "/signup", class: "inline-flex items-center justify-center rounded-xl bg-emerald-900 px-5 py-3 text-sm font-semibold text-white shadow-sm transition hover:bg-emerald-800" %>
-          <%= link_to "Explore reviews", "#reviews", class: "inline-flex items-center justify-center rounded-xl border border-stone-300 bg-white px-5 py-3 text-sm font-semibold text-slate-700 transition hover:border-emerald-800 hover:text-emerald-900" %>
+          <%= link_to "Get started", "/users/new", class: "inline-flex items-center justify-center rounded-xl bg-emerald-900 px-5 py-3 text-sm font-semibold text-white shadow-sm transition hover:bg-emerald-800" %>
         </div>
       <% end %>
     </div>
